@@ -9,6 +9,9 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 import pickle
 
+st.image(r"image.jpg",use_column_width= True,)
+st.title("Cancer Prediction using M.L")
+
 gender = ["Male","Female"]
 tumor =['High', 'Low', 'Medium']
 family = ["Yes","No"]
@@ -29,10 +32,16 @@ Smoking_History=st.selectbox("Rate your Smoking consumption rate",smoking)
 Alcohol_Consumption=st.selectbox("Rate your Alcohol consumption rate",alcohol)
 Exercise_Frequency=st.selectbox("Exercise Routine",exercise)
 
-
+pre =[]
 if st.button("Submit"):
     prediction = model.predict([[Age,Gender,Tumor_Size,Tumor_Grade,Symptoms_Severity,Family_History,Smoking_History,Alcohol_Consumption,Exercise_Frequency]])[0]
     st.write("The prediction is: ", prediction)
+    pre.append(prediction)
+    if pre[0] == 0:
+        st.write("Chance of getting cancer is Zero")
+    elif pre[0] == 1:
+        st.write("Chance of getting cancer is High")
+
 
 
 st.write("Thank you")
