@@ -9,18 +9,25 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 import pickle
 
+gender = ["Male","Female"]
+tumor =['High', 'Low', 'Medium']
+family = ["Yes","No"]
+alcohol = ['Moderate', 'High', 'Low']
+symptoms = ['Mild', 'Moderate', 'Severe']
+smoking = ['Former Smoker', 'Current Smoker', 'Non-Smoker']
+exercise = ['Never', 'Regularly', 'Rarely', 'Occasionally']
 
 model = pickle.load(open("estimator_sss.pkl","rb"))
 
 Age=st.number_input("Enter your Age:",step=1)
-Gender= st.text_input("Enter your gender:")
-Tumor_Size=st.number_input("Enter your tumor size:")
-Tumor_Grade=st.text_input("Enter your tumor grade:")
-Symptoms_Severity=st.text_input("Enter your Severity:")
-Family_History=st.text_input("Enter if any Family History:")
-Smoking_History=st.text_input("Rate your Smoking consumption rate")
-Alcohol_Consumption=st.text_input("Rate your Alcohol consumption rate")
-Exercise_Frequency=st.text_input("Exercise Routine")
+Gender= st.selectbox("Enter your gender:",gender)
+Tumor_Size=st.slider("Enter your tumor size:",0.0,5.0,0.0,step=0.5)
+Tumor_Grade=st.selectbox("Enter your tumor grade:",tumor)
+Symptoms_Severity=st.selectbox("Enter your Severity:",symptoms)
+Family_History=st.selectbox("Enter if any Family History:",family)
+Smoking_History=st.selectbox("Rate your Smoking consumption rate",smoking)
+Alcohol_Consumption=st.selectbox("Rate your Alcohol consumption rate",alcohol)
+Exercise_Frequency=st.selectbox("Exercise Routine",exercise)
 
 
 if st.button("Submit"):
